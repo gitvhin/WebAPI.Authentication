@@ -5,7 +5,7 @@ namespace WebAPI.Authentication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -21,6 +21,7 @@ namespace WebAPI.Authentication.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [Authorize(Roles = "reader")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
